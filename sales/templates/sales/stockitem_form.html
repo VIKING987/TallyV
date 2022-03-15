@@ -1,0 +1,24 @@
+<head>
+    <title>Stock Item Creation</title>
+    <style>
+        .submission-form{
+            border: solid #5f788a 2px;
+            padding: 10px;
+            border-radius: 15px;
+        }
+        .forminput{
+            display: block;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+{% extends 'sales/base.html' %}
+{% block content %}
+    <form class = 'submission-form' method="POST">
+        {% csrf_token %}
+
+        {{ form.as_p }}
+
+        <button type="submit">Submit</button>
+    </form>
+{% endblock content %}

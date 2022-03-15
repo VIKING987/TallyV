@@ -1,0 +1,29 @@
+<head>
+    <title>InvoiceItem Creation</title>
+    <style>
+        .submission-form {
+            padding: 10px;
+            border-radius: 15px;
+        }
+
+        .forminput {
+            display: block;
+            border-radius: 5px;
+        }
+
+        .forminputaddress {
+            height: 10vh;
+            width: 45vh;
+        }
+    </style>
+</head>
+{% extends 'sales/base.html' %}
+{% block content %}
+<form class='submission-form border-dark border' method="POST">
+    {% csrf_token %}
+
+    {{ form.as_p }}
+
+    <button class = 'btn btn-outline-dark' type="submit">Submit</button>
+</form>
+{% endblock content %}

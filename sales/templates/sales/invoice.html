@@ -1,0 +1,119 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'sales/invoice.css' %}">
+</head>
+<body>
+    <header>
+        <p style="text-align: center; font-weight: 900;">TAX INVOICE</p>
+    </header>
+    <div class="container">
+        <div class="box1">
+            <div class="box1-1">
+                <H1>SOTC</H1>
+            </div>
+            <div class="box1-2">
+                <div class="box1-2-1">
+                    <p style='margin: 4px'>Invoice No.: {{invoice.id}}</p>
+                </div>
+                <div class="box1-2-2">
+                    <p style='margin: 4px'>Date: {{invoice.date}}</p>
+                </div>
+                <div class="box1-2-3">
+                    <p style='margin: 4px'>Dispatch Document No.: {{invoice.bales}}</p>
+                </div>
+                <div class="box1-2-4">
+                    <p style='margin: 4px'>Dispatched Through: {{invoice.disp_thru}}</p>
+                </div>
+                <div class="box1-2-5">
+                    <p style='margin: 4px'>Destination: {{invoice.delivery}}</p>
+                </div>
+                <div class="box1-2-6">
+                    <p style='margin: 4px'>Delivery Note: </p>
+                </div>
+                <div class="box1-2-7">
+                    <p style='margin: 4px'>Buyer's Order No.: </p>
+                </div>
+                <div class="box1-2-8"><p style='margin: 4px'>Dated:</p> </div>
+            </div>
+            <div class="box1-3">
+                <p>Buyer</p>
+                <b><p style="font-size: 25px;">{{invoice.party_name}}</p></b><br>
+                <p>{{invoice.party_name.address_line1}}</p>
+                <p>{{invoice.party_name.address_line2}}</p><br>
+                <p>{{invoice.party_name.phone}}</p>
+            </div>
+            <div class="box1-4">
+                    <p style='margin: 4px'>Terms of Delivery:</p>
+            </div>
+        </div>
+        <div class="box2">
+            <table class='css-serial' style="border-bottom: solid black 2px;">
+                <thead>
+                    <th class='SlNo'>SlNo</th>
+                    <th class='Description'>Description of Goods</th>
+                    <th class='HSN'>HSN/SAC</th>
+                    <th class='HSN'>Quantity</th>
+                    <th class='HSN'>Rate</th>
+                    <th class='Per' style="font-size: 12px;">Per</th>
+                    <th class='Amount'>Amount</th>
+                </thead>
+                <tbody>
+                    {% for invoiceitem in invoiceitems %}
+                        <tr>
+                            <td class='SlNo'>
+                            </td>
+                            <td class='Description'>
+                                <p>{{invoiceitem.stockitem}}</p>
+                                <p>{{invoiceitem.description}}</p>
+                            </td>
+                            <td class='HSN'>
+                                <p>{{invoiceitem.stockitem.hsncode}}</p>
+                            </td>
+                            <td class='HSN'>
+                                <p>{{invoiceitem.quantity}}{{invoiceitem.stockitem.per}}</p>
+                            </td>
+                            <td class='HSN'>
+                                <p>{{invoiceitem.rate}}/-</p>
+                            </td>
+                            <td class='Per' style="font-size: 12px;">
+                                <p>{{invoiceitem.stockitem.per}}</p>
+                            </td>
+                            <td class='Amount'>
+                                <p>{{invoiceitem.price}}/-</p>
+                            </td>
+                        </tr>
+                    {% endfor %}
+                    <tr>
+                        <td style="border-top: 2px solid black; visibility: hidden;" class='SlNo'>
+                        </td>
+                        <td style="border-top: 2px solid black;" class='Description'>
+                            <p style="text-align: right;">Total: </p>
+                        </td>
+                        <td style="border-top: 2px solid black;" class='HSN'>
+                        </td>
+                        <td style="border-top: 2px solid black;" class='HSN'>
+                        </td>
+                        <td style="border-top: 2px solid black;" class='HSN'>
+                        </td>
+                        <td style="border-top: 2px solid black;" class='Per'>
+                        </td>
+                        <td style="border-top: 2px solid black;" class='Amount'>
+                            <p>{{invoice.total}}/-</p>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            <p>Amount(in words): Indian Rupees {{num2wrd}}</p>
+            <div class="sign">
+                <p>Authorized Signatory</p>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

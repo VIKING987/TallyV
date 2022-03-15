@@ -1,0 +1,27 @@
+<head>
+    <title>Party Creation</title>
+    <style>
+        .submission-form{
+            padding: 10px;
+            border-radius: 15px;
+        }
+        .forminput{
+            display: block;
+            border-radius: 5px;
+        }
+        .forminputaddress{
+            height: 10vh;
+            width: 45vh;
+        }
+    </style>
+</head>
+{% extends 'sales/base.html' %}
+{% block content %}
+<form class='submission-form border-dark border' method="POST">
+    {% csrf_token %}
+
+    <h2>Are You Sure You Want To Delete {{object.stockitem}}</h2>
+
+    <button class="btn btn-outline-dark" type="submit">Yes, Delete</button>
+</form>
+{% endblock content %}

@@ -1,0 +1,54 @@
+<head>
+    <title>HOME</title>
+    <style>
+        .home-container{
+          display: grid;
+          grid-template-columns: 1fr 1fr;
+          grid-template-rows: 1fr 1fr 1fr;
+        }
+        .home-container1{
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 2px;
+            height: 25vh;
+            border-radius: 10px;
+            color: white;
+        }
+    </style>
+</head>
+{%extends 'sales/base.html'%}
+{% block content %}
+    <div class="home-container">
+        <a href="{%url 'create-party'%}">
+            <div class="home-container1 bg-dark">
+                <p>Create A New Party</p>
+            </div>
+        </a>
+        <a href="{%url 'create-stock-item'%}">
+            <div class="home-container1 bg-dark">
+                <p>Create A New Stock Item</p>
+            </div>
+        </a>
+        <a href="{%url 'create-invoice'%}">
+            <div class="home-container1 bg-dark">
+                <p>Create A New Invoice</p>
+            </div>
+        </a>
+        <a href="{%url 'list-party'%}">
+            <div class="home-container1 bg-dark">
+                <p>Your Parties</p>
+            </div>
+        </a>
+        <a href="{%url 'list-stock-item'%}">
+            <div class="home-container1 bg-dark">
+                <p>Stock Items</p>
+            </div>
+        </a>
+        <a style="visibility: hidden;" href="{%url 'create-party'%}">
+            <div class="home-container1 bg-dark">
+                <p>Create A New Party</p>
+            </div>
+        </a>
+    </div>
+{% endblock content %}

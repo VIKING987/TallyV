@@ -1,0 +1,21 @@
+<head>
+    <title>Party Details</title>
+</head>
+{% extends 'sales/base.html' %}
+{% block content %}
+<h2>{{ object.name }}</h2>
+<h5>{{ object.phone }}</h5>
+<h5>{{ object.address_line1 }}</h5>
+<h5>{{ object.address_line2 }}</h5>
+
+<a href="/update-party/{{object.id}}"><button class='btn btn-outline-dark my-4' type="submit">UPDATE</button></a>
+
+<div class="list-group">
+    {% for invoice in inv_list %}
+    <p><a class="list-group-item" href="/detail-invoice/{{invoice.id}}">{{invoice}}</a></p>
+    {% endfor %}
+</div>
+<h5>Sale Amount: {{object.sale_amount}}</h5>
+<h5>Payment Recieved: {{object.payment_recieved}}</h5><a href="/update-payment/{{object.id}}"><button class='btn btn-outline-dark my-4' type="submit">UPDATE</button></a>
+<h5>Balance: {{object.balance}}</h5>
+{% endblock content %}

@@ -1,0 +1,32 @@
+<head>
+    <title>Invoice-Details</title>
+</head>
+{% extends 'sales/base.html' %}
+{% block content %}
+
+    <h2>INVOICE NO.: {{ object }}</h2>
+    <h5>DATE: {{ object.date }}</h3>
+    <h5>DISPATCHED THROUGH: {{ invoice.disp_thru }}</h3>
+    <h5>BALES: {{ object.bales }}</h3>
+    <h5>PARTY NAME: {{ object.party_name }}</h3>
+    <h5>DESTINATION: {{ object.delivery }}</h3>
+
+    <div class="list-group">
+        {% for invoiceitem in inv_list %}
+            <div class="list-group-item">
+                {{invoiceitem.stockitem}}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                {{invoiceitem.quantity}}{{invoiceitem.stockitem.per}}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                ₹{{invoiceitem.rate}}/-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                ₹{{invoiceitem.price}}/-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                <a href="/delete-invoiceitem/{{invoiceitem.id}}"><button class = 'btn btn-outline-dark' type="submit">Delete</button></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                <a href="/update-invoiceitem/{{invoiceitem.id}}"><button class = 'btn btn-outline-dark' type="submit">Update Entry</button></a>
+            </div>
+        {% endfor %}
+    </div>
+    <a href="/create-invoiceitem/{{object.id}}"><button class = 'btn btn-outline-dark my-2' type="submit">Add More</button></a>
+    <h3 class="my-4">Amount: {{object.total}}</h3>
+
+    <a href="/update-invoice/{{object.id}}"><button class = 'btn btn-outline-dark' type="submit">Update</button></a>
+    <a href="/print-invoice/{{object.id}}"><button class = 'btn btn-outline-dark' type="submit">Print</button></a>
+
+{% endblock content %}

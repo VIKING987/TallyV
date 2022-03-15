@@ -1,0 +1,16 @@
+{% extends 'sales/base.html' %}
+{% block content %}
+
+<body class="text-center">
+    <form class="form-signin" method="POST">
+        {% csrf_token %}
+        <h1 class="h3 mb-3 font-weight-normal">Please sign in</h1>
+        <div class="form-group">
+        {{form.as_p}}
+        </div>
+        <a href="/login"><button class="btn btn-lg btn-dark" type="submit">Sign in</button></a>
+    </form>
+
+
+</body>
+{% endblock content %}
